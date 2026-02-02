@@ -1,0 +1,519 @@
+/* Prevent scrolling */
+/* General styles */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling */
+    height: 100%;
+    background-color: none;
+    z-index: 1;
+    font-family: "Urbanist", sans-serif;
+}
+
+.header .anchor {
+    background: rgba(218, 218, 218, 0.62);
+    padding: 2px 4px;
+    align-items: center;
+    border: none;
+    border-radius: 50px;
+    height: 42px;
+    width: 183px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.anchor a {color: #fff;}
+
+.anchor .a-cam {
+    border: none;
+    border-radius: 50px;
+    width: 114px;
+    height: 36px;
+    background: rgba(0, 0, 0, 0.27);
+    font-size: 16px;
+    text-decoration: none;
+    align-items: center;
+    justify-content: space-evenly;
+    display: flex;
+}
+
+.anchor .a-mic {
+    border: none;
+    width: 46px;
+    height: 28px;
+    background: none;
+    font-size: 19px;
+    text-decoration: none;
+    align-items: center;
+    justify-content: space-evenly;
+    display: flex;
+}
+
+#video-container {
+    position: absolute;
+    max-width: 30%;
+    height: auto;
+    top: 30%;
+    right: 0;
+    border: none;
+    outline: none;
+    background: none;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    display: none; /* Hide video initially */
+}
+#videoPlayer {
+    width: 100%;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+}
+#no-video {
+    width: 100%;
+    height: auto;
+    display: block; /* Show image initially */
+    border: none;
+    outline: none;
+}
+#videoPlayer::-webkit-media-controls {
+    display: none !important; /* Hide video controls in WebKit browsers */
+    border: none;
+    outline: none;
+}
+#videoPlayer::-moz-media-controls {
+    display: none !important; /* Hide video controls in Mozilla Firefox */
+    border: none;
+    outline: none;
+}
+#videoPlayer::-ms-media-controls {
+    display: none !important; /* Hide video controls in Internet Explorer */
+    border: none;
+    outline: none;
+}
+#videoPlayer {
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
+    background: transparent;
+}
+
+/* Style the video to cover the entire screen */
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    max-width: 1140px;
+    margin-inline: auto;
+    padding-block: 18px;
+    z-index: 4;
+    padding: 10px; /* 10px padding on all sides */
+    box-sizing: border-box; /* Ensures padding is included in the element's width */
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 1;
+}
+
+.header .back-btn {
+    background-color: none;
+    width: 45px;
+    height: 45px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 50%;
+    font-size: 12px;
+    border: none;
+    color: #fff;
+    text-decoration: none;
+}
+
+.feed button {
+    background: none;
+    font-size: 10px;
+    color: white;
+    border: none;
+}
+
+.feed textarea::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+}
+
+.feed textarea:focus {outline: none;}
+.feed textarea::placeholder {color: whitesmoke;}
+
+.button-container button {
+    background: #fff;
+    border-color: white;
+    font-size: 25px;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button-container .speakButton {
+    background: none;
+}
+
+.translate-btn {
+    right: 0;
+    margin-top: 2%;
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-color: none;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.translate-btn button {
+    border: 2px solid #fff;
+    font-size: 10px;
+
+}
+
+@media only screen and (min-width: 768px) {
+    .header h1 {display: none;}
+
+    button.voice-msg {background: none;}
+
+    .button-container {
+        position: relative; /* Ensures this container is positioned relatively */
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        width: 100%;
+        top: 33%;
+    }
+
+    #status {display: none;}
+
+    .camera {display: none;}
+
+    .feed {
+        position: relative;
+        top: 30%;
+    }
+
+    .feed textarea {
+        background: none;
+        color: white;
+        width: 75vh;
+        height: 30vh;
+        border: none;
+        font-size: 50px;
+        resize: none;
+        overflow: auto; /* Allows scrolling but hides scrollbars */
+         -ms-overflow-style: none; /* For Internet Explorer and Edge */
+        scrollbar-width: none; /* For Firefox */
+    }
+
+    #video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: translate(-50%, -50%) scaleX(-1);
+        z-index: 3;
+    }
+
+    .shdw {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(to right,
+            rgba(0, 0, 0, 999) 5%, /* Dark black on the left */
+            rgba(0, 0, 0, 0) 60%, /* Dark black until 60% of the width */
+            rgba(0, 0, 0, 0) 60%, /* Transition to transparent at 60% */
+            rgba(0, 123, 255, 0) 100% /* Transparent blue on the right */
+        );
+        z-index: 4; /* Ensure it's positioned above other content */
+    }
+
+    .suggestions {
+        justify-content: center;
+        left: 20%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        display: flex;
+        gap: 10px;
+        z-index: 15;
+        width: 40%; /* Ensure the container spans the full width */
+        height: auto;
+        border-radius: 20px;
+        padding: 5px;
+        background: none;
+        bottom: 0;
+        margin: 1px;
+    }
+
+    .suggestions hr {width: 100%;}
+
+    .suggestions button {
+        border: 1px solid #fff;
+        border-radius: 20px;
+        background: grey;
+        cursor: pointer;
+        color: white;
+        font-size: 25px;
+        width: 115px;
+        height: 40px;
+        z-index: 17;
+    }
+
+    .suggestion-button:hover {
+        background-color: #e2e6ea;
+    }
+}
+
+
+/* Target small devices (phones, portrait and landscape) */
+@media only screen and (max-width: 767px) {
+    html, body {
+        background-color: none;
+    }
+
+    #video {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        transform: translate(-50%, -50%) scaleX(-1);
+        z-index: 3;
+        object-fit: cover;
+        border-radius: 0 0 20px 20px;
+    }
+
+    .shdw {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(to top,
+            rgba(0, 0, 0, 999) 25%, /* Dark black on the left */
+            rgba(0, 0, 0, 0) 60%, /* Dark black until 60% of the width */
+            rgba(0, 0, 0, 0) 60%, /* Transition to transparent at 60% */
+            rgba(0, 123, 255, 0) 100% /* Transparent blue on the right */
+        );
+        /*border-radius: 0 0 20px 20px;*/
+        z-index: 4; /* Ensure it's positioned above other content */
+        border-radius: 0 0 20px 20px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 10px; /* 10px padding on all sides */
+        box-sizing: border-box; /* Ensures padding is included in the element's width */
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        height: 50px;
+        /*background-color: rgba(128, 128, 128, 0.5);*/
+        align-items: center;
+        position: absolute;
+        top: 0;
+        color: #fff;
+    }
+
+    .header a.back-btn, h1 {
+        border: none;
+        font-size: 16px;
+    }
+
+    .header .anchor {
+        display: flex;
+        position: fixed;
+        top: 8%;
+        left: 50%;
+        transform: translate(-50%);
+    }
+
+    .header button {
+        background: none;
+        width: 45px;
+        height: 45px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        border-radius: 50%;
+        font-size: 16px;
+        border: none;
+        color: #fff;
+    }
+
+    .button-container {
+        position: fixed; /* Fixed positioning for small screens */
+        bottom: 0; /* Align to the bottom of the viewport */
+        left: 0;
+        right: 0;
+        height: 150px; /* Adjust height for small screens */
+        background: none; /* Background color for visibility */
+        z-index: 10; /* Ensure it's above other elements */
+
+    }
+
+    hr {
+        width: 95%;
+        display: flex;
+        position: fixed;
+        left: 50%;
+        transform: translate(-50%);
+        margin: 1px;
+    }
+
+    .button-container button {
+        font-size: 15px; /* Smaller font size */
+        width: 55px; /* Smaller button size */
+        height: 55px;
+    }
+
+    .translate-btn {
+        bottom: 25px; /* Positioned just above the button-container */
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 75px; /* Smaller button size */
+        height: 75px;
+    }
+
+    .speakButton {
+        position: absolute;
+        bottom: 155px; /* Positioned just above the button-container */
+        right: 0;
+        transform: translate(-50%, -50%);
+        z-index: 500;
+    }
+
+    .voice-msg {display: none;}
+
+    .shutter {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        gap: 90px;
+        box-sizing: border-box; /* Ensures padding is included in the element's width */
+        margin-top: 50px;
+    }
+
+    .shutter h6 {
+        position: fixed;
+        bottom: 1%;
+        color: #fff;
+    }
+
+    .feed textarea {
+        z-index: 500;
+        background: none;
+        color: white;
+        width: 75%;
+        height: 9vh;
+        border: none;
+        padding: 10px;
+        font-size: 25px;
+        resize: none;
+        overflow: auto; /* Allows scrolling but hides scrollbars */
+         -ms-overflow-style: none; /* For Internet Explorer and Edge */
+        scrollbar-width: none; /* For Firefox */
+        position: absolute;
+    }
+
+    .feed {
+        width: 100%;
+        height: 15vh;
+        position: absolute;
+        bottom: 22%;
+        background: none;
+    }
+
+    .feed .submit {
+        color: #fff;
+        font-size: 20px;
+        position: absolute;
+        left: 1%;
+        bottom: 0;
+        cursor: pointer;
+        z-index: 500;
+    }
+
+    .suggestions {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly; /* Center content horizontally */
+        align-items: center; /* Center content vertically if needed */
+        left: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        gap: 10px;
+        z-index: 15;
+        width: 98%; /* Ensure the container spans the full width */
+        background: none;
+        bottom: 120px;
+    }
+
+
+    .suggestions button {
+        border: 1px solid #fff;
+        border-radius: 20px;
+        background: none;
+        cursor: pointer;
+        color: white;
+        font-size: 15px;
+        width: 115px;
+        height: 40px;
+        z-index: 16;
+    }
+
+    .suggestions hr {width: 95%; display: none;}
+
+    .suggestion-button:hover {
+        background-color: #e2e6ea;
+    }
+
+
+
+    /* Adjustments for different orientations */
+    @media only screen and (orientation: landscape) {
+
+    }
+}
+
+
+
+
+
+
+
+
+
