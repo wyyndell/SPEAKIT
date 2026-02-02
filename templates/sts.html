@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPEAKiT</title>
+    <link rel="stylesheet" href="/static/css/sts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container">
+        <div class="spectrum">
+            <div class="loader">
+                <div class="box">
+                    <div class="logo">
+                        <img src="/static/img/speakit-logo.png" style="height: 50px; width: 50px;">
+                    </div>
+                </div>
+                <div class="box box1"></div>
+                <div class="box box2"></div>
+            </div>
+        </div>
+
+        <div class="container1">
+            <div class="bg"></div>
+            <div class="header">
+                <a href="/choice" class="back-btn" style="font-size: 18px;"><i class="fa-solid fa-house"></i></a>
+                <div class="anchor">
+                    <a href="/tostt" class="a-mic"><i class="fa-solid fa-video"></i></a>
+                    <a href="/tosts" class="a-cam"><i class="fa-solid fa-microphone"></i>Speak to Sign</a>
+                </div>
+            </div>
+
+            <div class="form-container" id="form-container">
+                <form action="/text_input" method="post">
+                    <div class="bottom-con">
+                        <div class="txt-con">
+                            <p class="p">Text Translation</p>
+                            <textarea id="text_input" class="txt-aria" name="text_input" rows="4" cols="50" readonly placeholder="Make a Sound!">{{ request.form.get('text_input', '') }}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="btns">
+                        <button id="mic-toggle" class="mic" aria-label="Toggle Microphone" style="z-index:999; position: absolute;">
+                            <i class="fa-solid fa-microphone-slash"></i>
+                            <span class="tooltip-text">Toggle Microphone</span>
+                        </button>
+                        <h6 id="status">Tap to begin</h6>
+                        <button type="button" id="write" aria-label="Write Text" style="display: none;">
+                            <i class="fa-solid fa-keyboard"></i>
+                            <span class="tooltip-text">Write Text</span>
+                        </button>
+                    </div>
+
+
+                    <div class="response">
+                        <div class="edit-con">
+                            <button type="button" class="edit" id="edit" aria-label="Write Text"><i class="fa-solid fa-a"></i><span class="tooltip-text">Write a response</span></button>
+                        </div>
+
+                        <div class="speak-con">
+                            <button type="submit"><i class="fa-regular fa-circle-play"></i><span class="tooltip-text">Translate to ASL</span></button>
+                            <button id="speak-button" aria-label="Speak Text"><i class="fa-solid fa-volume-high"></i><span class="tooltip-text">Speak</span></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="s-wave">
+            <img src="/static/img/wave.gif">
+        </div>
+
+        <div id="video-container" class="video-container">
+            <img id="no-video" class="no-video" src="{{ url_for('static', filename='img/alt.gif') }}" alt="SPEAKIT Logo">
+            <video id="videoPlayer" autoplay>
+                <source id="videoSource" src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <!-- Properly handle video_files data with a fallback to empty list -->
+    <script id="video-files-data" type="application/json">
+        {{ video_files | tojson | safe if video_files is defined else '[]' }}
+    </script>
+
+    <script src="/static/js/splash.js"></script>
+    <script src="/static/js/video-handler.js"></script>
+    <script src="/static/js/sts.js"></script>
+</body>
+</html>

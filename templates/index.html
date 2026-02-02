@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="/static/img/SPEAKiT.png" type="image/svg+xml">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPEAKIT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <!-- <div class="absolute">
+        <div class="absolute inset-0 justify-center">
+            <div class="bg-shape1 bg-teal opacity-50 bg-blur"></div>
+            <div class="bg-shape2 bg-purple opacity-50 bg-blur"></div>
+            <div class="bg-shape3 bg-primary opacity-50 bg-blur"></div>
+        </div>
+    </div> -->
+    <header class="container navbar" id="header">
+        <div class="navbar-menu" id="navbar">
+            <div class="burger-menu">
+                <div class="mobile-logo"> <img src="/static/img/SPEAKiT.png" alt=""></div>
+                <div>
+                    <button class="burger-button" id="burgerButton" onclick="toggleMenu()">
+                        <i class="fa fa-bars"></i> <!-- Initial icon (burger) -->
+                    </button>
+                </div>
+            </div>
+            <div class="header-nav" id="headNav">Developer</div>
+            <div class="header-nav" id="headNav1">Features</div>
+            <div class="header-logo" id="logo">
+                <img src="/static/img/SPEAKiT.png" alt="logo">
+            </div>
+            <div class="header-nav" id="headNav2">About</div>
+            <div class="header-nav" id="headNav3">Contact us</div>
+            <a href="/index" class="nav-btn" id="nav-btn" style="text-decoration: none;"><div>Get started</div></a>
+            <div class="header-logo"> <img src="/static/img/SPEAKiT.png`" alt=""></div>
+            <div class="menu-bar" id="menu-bar">
+                <i class="fa fa-bars"></i>
+            </div>
+            <div class="close-bar" id="close-bar">
+                <i class="fa fa-times"></i>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="container">
+
+        <!-- Section 1 -->
+        <div class="section heros">
+
+
+
+        <div class="hero">
+            <div class="section-title">Don't keep your ideas in silence - <span class="appname">SPEAKIT</span></div>
+            <div class="section-subtitle">A communication tool to break through the language barrier for Deaf</div>
+            <div class="buttons">
+                <a href="/index" class="primary-btn" style="text-decoration: none;"><div>Get started</div></a>
+                <!-- <div class="primary-btn">Get started</div> -->
+                <div class="secondary-btn"><i class="fa-regular fa-circle-play"></i> Watch</div>
+            </div>
+        </div>
+        <div class="hero-img">
+            <img src="/static/img/hero1.png" alt="">
+        </div>
+    </div>
+
+
+
+        <!-- Section 2 -->
+        <section class="section introduction scroll-reveal">
+            <h2 class="section2-title"> <span> Introducing SPEAKIT</span></h2>
+            <p class="about-webapp"><span> A tool that uses technology to translate sign language, making communication easier for people with hearing or speech impairments.</span></p>
+        </section>
+
+        <!-- Section 3 -->
+        <div class="section-bg">
+            <div class="section3">
+                <div class="features-section">
+                    <!-- order no. 1 -->
+                    <div class="section3-feature">
+                        <span class="label">
+                            <img src="/static/img/spark.png" alt="">
+                            <span class="labels">Features</span>
+                        </span>
+                        <h1 class="section-titles">Speech to Sign Language</h1>
+                        <p class="section-sub"> Translates spoken words into american sign language (ASL) </p>
+                    </div>
+
+                    <div class="speech-video2">
+                        <video src="static/img/updates.mp4" autoplay muted loop></video>
+                    </div>
+                    <!-- order no. 2 -->
+                    <div class="featuring">
+                        <div class="features">
+                            <div class="features-speech">
+                                <div class="feature-icon"><img src="/static/img/Sign Language R.png" alt=""></div>
+                                <h2 class="label-icon">SIMAX Animation</h2>
+                                <p class="label-sub">SiMAX Animation provides translations for both text and speech recognition.</p>
+                            </div>
+                            <div class="features-speech">
+                                <div class="feature-icon"><img src="/static/img/Voice.png" alt=""></div>
+                                <h2 class="label-icon">Speech Recognation</h2>
+                                <p class="label-sub">To speak, click or hold the microphone button and start speaking to transcribe your words.</p>
+                            </div>
+                        </div>
+                        <div class="features-btn">
+                            <a href="/tosts" style="text-decoration: none;">
+                            <button class="btn btn-primary"> Try now  <i class="fa-solid fa-arrow-right-long"></i></button></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- order no. 3 -->
+                <div class="speech-video">
+                    <video src="/static/img/updates.mp4" autoplay muted loop></video>
+                </div>
+            </div>
+
+
+            <!-- Section4 -->
+            <div class="section4">
+                <div class="speech-video">
+                    <video id="myVideo" src="/static/img/updated.mp4" autoplay muted loop></video>
+                </div>
+
+                <div class="features-section">
+                    <div class="section3-feature">
+                        <span class="label">
+                            <img src="/static/img/spark.png" alt="">
+                            <span class="labels">Features</span>
+                        </span>
+                        <h1 class="section-titles">Sign Language to Text</h1>
+                        <p class="section-sub"> Translates spoken words into american sign language (ASL) </p>
+                    </div>
+
+                    <div class="speech-video2">
+                        <video id="myVideo" src="/static/img/updated.mp4" autoplay muted loop></video>
+                    </div>
+
+                    <div class="featuring">
+                        <div class="features">
+                            <div class="features-speech">
+                                <div class="feature-icon"><img src="/static/img/camera.png" alt=""></div>
+                                <h2 class="label-icon"> Camera Recognation</h2>
+                                <p class="label-sub">Place an ASL hand sign infront of the camera sensor for fingerspelling recognition.</p>
+                            </div>
+                            <div class="features-speech">
+                                <div class="feature-icon"><img src="/static/img/Text.png" alt=""></div>
+                                <h2 class="label-icon"> Text Translation</h2>
+                                <p class="label-sub">Enter text into the textbox for American Sign Language fingerspelling translation.</p>
+                            </div>
+                        </div>
+                        <div class="features-btn">
+                            <a href="/index" style="text-decoration: none;">
+                            <button class="btn btn-primary"> Try now  <i class="fa-solid fa-arrow-right-long"></i></button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- CTA Section -->
+        <div class="section CTA">
+            <div class="CTAS">
+                <h1 class="CTA-title"> Let your hands</h1>
+                <h1 class="CTA-title"> Make a sound</h1>
+                <p class="CTA-subtitle">SPEAKiT is a fingerspelling translator tool promoting inclusivity between deaf and hearing communities.</p>
+            </div>
+            <div class="CTA-btns">
+<!--                <button class="Getstarted-btn"> Get started</button>-->
+                <a href="/index" class="Getstarted-btn" style="text-decoration: none;"><div>Get started</div></a>
+            </div>
+
+            <div class="CTA-img">
+                <img src="/static/img/new.png" alt="">
+            </div>
+        </div>
+
+
+        <!-- Footer -->
+        <footer class="footer" id="footer">
+            <div class="social-media">
+                <span class="socmed-logo"> <img src="/static/img/Facebook.png" alt="facebook"></span>
+                <span class="socmed-logo"> <img src="/static/img/YouTube.png" alt=" Youtube"></span>
+            </div>
+            <div class="developer">
+                <span class="dev-name"> Design and Developed of ITprenuer</span>
+            </div>
+        </footer>
+    </div>
+
+
+    <script src="/static/js/main.js"></script>
+    <script>
+        function toggleMenu() {
+            const headNav = document.getElementById('headNav');
+            const headNav1 = document.getElementById('headNav1');
+            const headNav2 = document.getElementById('headNav2');
+            const headNav3 = document.getElementById('headNav3');
+            const burgerButton = document.getElementById('burgerButton');
+            const icon = burgerButton.querySelector('i');
+
+            // Toggle the 'active' class for sliding up/down
+            headNav.classList.toggle('active');
+
+            // Check if the menu is open or closed
+            if (headNav.classList.contains('active')) {
+                // Menu is open, show the close icon
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+                headNav.style.display = 'flex';
+                headNav1.style.display = 'flex';
+                headNav2.style.display = 'flex';
+                headNav3.style.display = 'flex';
+            } else {
+                // Menu is closed, show the burger icon
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                headNav.style.display = 'none';  // Corrected to use 'style.display'
+                headNav1.style.display = 'none';
+                headNav2.style.display = 'none';
+                headNav3.style.display = 'none';
+            }
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/speakit-logo.png" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/static/css/stt.css">
+    <script src="https://cdn.jsdelivr.net/npm/wavesurfer.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>SPEAKiT</title>
+</head>
+<body>
+    <div class="shdw"></div>
+    <div class="container">
+        <div class="header">
+            <a href="/choice" class="back-btn"><i class="fa-solid fa-house"></i></a>
+            <h1>SPEAKiT</h1>
+            <button id="switchCamButton" class="camera"><i class="fa-solid fa-arrows-rotate"></i></button>
+            <div class="anchor">
+                <a href="/tostt" class="a-cam"><i class="fa-solid fa-video"></i> Camera</a>
+                <a href="/tosts" class="a-mic"><i class="fa-solid fa-microphone"></i></a>
+            </div>
+        </div>
+        <div class="feed">
+            <div class="txtarea-content">
+                <div class="send-sec">
+                    <div class="txtarea-con">
+                        <div id="suggestions" class="suggestions"><hr></div>
+                        <textarea id="translation" placeholder="Let your hands make a sound!"></textarea>
+                        <div class="response" style="display: none;">
+                            <button type="submit" class="submit"><i class="fa-regular fa-circle-play"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="txtarea-btn" style="display: none;">
+                    <button id="backspaceButton">Delete</button>
+                    <button id="clearButton" style="color: red;">Clear</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-container">
+<!--            <div id="suggestions" class="suggestions"></div>-->
+            <button id="voice-msg" class="voice-msg"><i class="fa-solid fa-microphone-slash"></i></button>
+            <div class="shutter">
+                <button id="speakButton" class="speakButton"><i class="fa-solid fa-volume-high"></i></button>
+                <div class="translate-btn">
+                    <button id="translateButton" class="circle-btn" style="border: none;"></button>
+                </div>
+                <h6 id="status">Tap to begin</h6>
+            </div>
+            <select id="cameraSelect" style="display: none;"></select>
+        </div>
+        <audio id="sound" src="/static/sound/tap.mp3"></audio>
+
+        <div>
+            <div id="video-container" class="video-container">
+                <img id="no-video" src="{{ url_for('static', filename='img/alt.gif') }}" alt="SPEAKIT Logo">
+                <video id="videoPlayer" autoplay>
+                    <source id="videoSource" src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <div class="shadow"></div>
+     <video id="video" autoplay playsinline></video>
+
+    <script src="/static/js/stt.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const voiceMsgButton = document.getElementById('voice-msg');
+            const textArea = document.getElementById('translation');
+            let recognition;
+            let isMicOn = false;
+
+            // Check if the browser supports Web Speech API
+            if ('webkitSpeechRecognition' in window) {
+                recognition = new webkitSpeechRecognition();
+                recognition.lang = 'en-US';
+                recognition.continuous = true;
+                recognition.interimResults = true;
+
+                // Display the recognized speech in the textarea
+                recognition.onresult = function(event) {
+                    let finalTranscript = '';
+                    let interimTranscript = '';
+
+                    for (let i = event.resultIndex; i < event.results.length; i++) {
+                        const result = event.results[i];
+                        if (result.isFinal) {
+                            finalTranscript += result[0].transcript;
+                        } else {
+                            interimTranscript += result[0].transcript;
+                        }
+                    }
+
+                    textArea.value = finalTranscript + interimTranscript;
+                    textArea.scrollTop = textArea.scrollHeight; // Scroll to the bottom of the textarea
+                };
+
+                recognition.onerror = function(event) {
+                    console.error('Speech recognition error', event.error);
+                };
+
+                // Toggle microphone on/off when clicking the button
+                voiceMsgButton.addEventListener('click', function() {
+                    if (!isMicOn) {
+                        recognition.start();
+                        voiceMsgButton.innerHTML = '<i class="fa-solid fa-microphone"></i>';
+                        isMicOn = true;
+                    } else {
+                        recognition.stop();
+                        voiceMsgButton.innerHTML = '<i class="fa-solid fa-microphone-slash"></i>';
+                        isMicOn = false;
+                    }
+                });
+            } else {
+                // If speech recognition is not supported, hide the mic button
+                voiceMsgButton.style.display = 'none';
+                alert('Speech recognition is not supported in this browser.');
+            }
+        });
+    </script>
+</body>
+</html>
